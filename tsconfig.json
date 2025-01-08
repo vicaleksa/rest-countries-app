@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "strict": true,
+        "module": "es6",
+        "target": "es2023",
+        "lib": ["es2023", "dom"],
+        "jsx": "react",
+        "moduleResolution": "node"
+    }
+}
