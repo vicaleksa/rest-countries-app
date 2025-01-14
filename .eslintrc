@@ -8,6 +8,13 @@
         "tsconfigRootDir": "."
     },
     "plugins": ["@typescript-eslint"],
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "directory": "./tsconfig.json"
+            }
+        }
+    },
     "extends": [
         "airbnb",
         "airbnb/hooks",
@@ -23,6 +30,12 @@
         "import/no-unresolved": ["off"],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
-        "jsx-a11y/label-has-associated-control": ["error", {"assert": "either"}]
+        "jsx-a11y/label-has-associated-control": ["error", {"assert": "either"}],
+        "import/extensions": ["error", "never", {
+            "js": "never",
+            "jsx": "never",
+            "ts": "never",
+            "tsx": "never"
+        }]
     }
 }
