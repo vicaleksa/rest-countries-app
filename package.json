@@ -1,7 +1,7 @@
 {
   "name": "list-of-countries",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/index.tsx",
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
@@ -13,6 +13,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
     "css-loader": "^7.1.2",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",

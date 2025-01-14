@@ -5,7 +5,8 @@
         "module": "es6",
         "target": "es2023",
         "lib": ["es2023", "dom"],
-        "jsx": "react",
-        "moduleResolution": "node"
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "esModuleInterop": true
     }
 }
