@@ -1,0 +1,51 @@
+:root {
+    --clr-typography: #111517;
+    --clr-elements: #fff;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Nunito Sans", serif;
+    font-weight: 300;
+    color: var(--clr-typography);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  color: currentcolor;
+  font-family: inherit;
+}
+
+button {
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    font: inherit;
+}

@@ -1,15 +1,29 @@
 import { createRoot } from 'react-dom/client';
-// import { BrowserRouter } from 'react-router';
+import { StrictMode } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import './index.css';
 
 function App() {
     return (
-        <h1>Hello World</h1>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
-    createRoot(rootElement).render(<App />);
+    createRoot(rootElement).render(
+        <StrictMode>
+            <App />
+        </StrictMode>,
+    );
 } else {
     // eslint-disable-next-line no-console
     console.error('root is not found');
