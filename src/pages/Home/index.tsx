@@ -1,7 +1,10 @@
+import Search from '../../components/Search';
+import styles from './style.module.css';
+
 export default function Home() {
     return (
-        <h1>
-            Home page with countries
-        </h1>
+        <div className={styles.home}>
+            <Search />
+        </div>
     );
 }

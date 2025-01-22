@@ -1,6 +1,9 @@
 :root {
     --clr-typography: #111517;
     --clr-elements: #fff;
+    --clr-background: #fafafa;
+    --clr-input: #858585;
+    --clr-input-placeholder: #c4c4c4;
 }
 
 *,
@@ -14,6 +17,7 @@ body {
     font-family: "Nunito Sans", serif;
     font-weight: 300;
     color: var(--clr-typography);
+    background-color: var(--clr-background);
 }
 
 h1,
