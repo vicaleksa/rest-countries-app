@@ -1,15 +1,7 @@
-:root {
-    --clr-typography: #111517;
-    --clr-elements: #fff;
-    --clr-background: #fafafa;
-    --clr-input: #858585;
-    --clr-input-placeholder: #c4c4c4;
-}
-
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -18,6 +10,22 @@ body {
     font-weight: 300;
     color: var(--clr-typography);
     background-color: var(--clr-background);
+}
+
+.light {
+    --clr-typography: #111517;
+    --clr-elements: #fff;
+    --clr-background: #fafafa;
+    --clr-input: #858585;
+    --clr-input-placeholder: #c4c4c4;
+}
+
+.dark {
+    --clr-typography: #fff;
+    --clr-elements: #2B3844;
+    --clr-background: #202C36;
+    --clr-input: #fff;
+    --clr-input-placeholder: #fff;
 }
 
 h1,
@@ -30,8 +38,8 @@ p,
 ul,
 ol,
 li {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 a {
@@ -40,8 +48,8 @@ a {
 
 button,
 input {
-  color: currentcolor;
-  font-family: inherit;
+    color: currentcolor;
+    font-family: inherit;
 }
 
 button {
