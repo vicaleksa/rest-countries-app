@@ -1,11 +1,10 @@
 import { IoSearch } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
-import { useMemo } from 'react';
 import styles from './style.module.css';
 
-export default function Search() {
-    const iconColor = useMemo(() => ({ color: 'var(--clr-input)' }), []);
+const iconColor = { color: 'var(--clr-input)' };
 
+export default function Search() {
     return (
         <search>
             <form>

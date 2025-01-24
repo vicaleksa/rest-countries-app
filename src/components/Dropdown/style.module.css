@@ -1,0 +1,44 @@
+.dropdown {
+    margin-top: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownButton {
+    min-width: 12.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.125rem 0.875rem 1.5rem;
+    background-color: var(--clr-elements);
+    font-size: 0.75rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.125rem 0.5rem rgb(0 0 0 / 5.32%);
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: var(--clr-elements);
+    margin-top: 0.25rem;
+    border-radius: 0.375rem;
+    padding: 0.75rem 0;
+    box-shadow: 0 0.125rem 0.5rem rgb(0 0 0 / 5.32%);
+}
+
+.openDropdown {
+    display: block;
+}
+
+.filterButton {
+    display: block;
+    padding: 0.25rem 1.125rem 0.25rem 1.5rem;
+    font-size: 0.75rem;
+    min-width: 12.5rem;
+    text-align: left;
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+}
