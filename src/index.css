@@ -1,11 +1,4 @@
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-}
-
 body {
-    margin: 0;
     font-family: "Nunito Sans", serif;
     font-weight: 300;
     color: var(--clr-typography);
@@ -28,20 +21,6 @@ body {
     --clr-input-placeholder: #fff;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-li {
-    margin: 0;
-    padding: 0;
-}
-
 a {
   color: inherit;
 }
@@ -53,9 +32,7 @@ input {
 }
 
 button {
-    border-radius: 0;
     background: none;
-    box-shadow: none;
     padding: 0;
     cursor: pointer;
     border: none;

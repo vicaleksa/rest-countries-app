@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import { ThemeProvider } from './contexts/ThemeContext';
 import './index.css';
+import 'normalize.css';
 
 function App() {
     return (
