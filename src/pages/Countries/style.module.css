@@ -1,0 +1,40 @@
+.countryList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.countryTile {
+    max-width: 16.5rem;
+    box-shadow: 0 0 0.5rem 0.125rem rgb(0 0 0 / 2.94%);
+}
+
+.flag {
+    display: block;
+    width: 16.5rem;
+    height: 10rem;
+    object-fit: cover;
+}
+
+.countryInfo {
+    margin: 1.5rem;
+    padding-bottom: 0.875rem;
+}
+
+.countryName {
+    font-size: 1.125rem;
+    font-weight: 800;
+    padding-bottom: 1rem;
+}
+
+.cardTitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+}
+
+.cardDescription {
+    font-weight: 300;
+}

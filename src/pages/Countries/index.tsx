@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styles from './style.module.css';
 
 interface Country {
     cca2: string,
@@ -38,26 +39,33 @@ export default function Countries() {
     }, []);
 
     const countryElements = countries.map((country) => (
-        <div key={country.cca2}>
-            <img src={country.flags.png} alt={`Flag of ${country.name.official}`} />
-            <h2>{country.name.official}</h2>
-            <h3>
-                {'Population: '}
-                <span>{country.population}</span>
-            </h3>
-            <h3>
-                {'Region: '}
-                <span>{country.region}</span>
-            </h3>
-            <h3>
-                {'Capital: '}
-                <span>{country.capital}</span>
-            </h3>
+        <div key={country.cca2} className={styles.countryTile}>
+            <img
+                src={country.flags.png}
+                alt={`Flag of ${country.name.official}`}
+                className={styles.flag}
+                loading="lazy"
+            />
+            <div className={styles.countryInfo}>
+                <h2 className={styles.countryName}>{country.name.official}</h2>
+                <h3 className={styles.cardTitle}>
+                    {'Population: '}
+                    <span className={styles.cardDescription}>{country.population}</span>
+                </h3>
+                <h3 className={styles.cardTitle}>
+                    {'Region: '}
+                    <span className={styles.cardDescription}>{country.region}</span>
+                </h3>
+                <h3 className={styles.cardTitle}>
+                    {'Capital: '}
+                    <span className={styles.cardDescription}>{country.capital}</span>
+                </h3>
+            </div>
         </div>
     ));
 
     return (
-        <div>
+        <div className={styles.countryList}>
             {countryElements}
         </div>
     );
