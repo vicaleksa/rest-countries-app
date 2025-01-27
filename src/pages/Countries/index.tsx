@@ -20,7 +20,7 @@ type Countries = Country[]
 export default function Countries() {
     const [countries, setCountries] = useState<Countries>([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<unknown>(null);
+    const [error, setError] = useState<string | null>(null);
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
@@ -28,8 +28,12 @@ export default function Countries() {
                 const response = await fetch('https://restcountries.com/v3.1/all');
                 const data = await response.json() as Countries;
                 setCountries(data);
-            } catch (err) {
-                setError(err);
+            } catch (e) {
+                if (e instanceof Error) {
+                    setError(e.message);
+                } else {
+                    throw e;
+                }
             } finally {
                 setLoading(false);
             }
@@ -63,6 +67,19 @@ export default function Countries() {
             </div>
         </div>
     ));
+
+    if (loading) {
+        return <h1>Loading...</h1>;
+    }
+
+    if (error) {
+        return (
+            <h1>
+                There was an error:
+                {error}
+            </h1>
+        );
+    }
 
     return (
         <div className={styles.countryList}>
