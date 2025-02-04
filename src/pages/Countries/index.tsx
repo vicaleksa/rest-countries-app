@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import styles from './style.module.css';
+import Dropdown from '../../components/Dropdown';
+import Search from '../../components/Search';
 
 interface Country {
     cca2: string,
@@ -7,6 +10,7 @@ interface Country {
         png: string
     },
     name: {
+        common: string
         official: string
     },
     population: number,
@@ -19,6 +23,8 @@ type Countries = Country[]
 
 export default function Countries() {
     const [countries, setCountries] = useState<Countries>([]);
+    const [searchFilter, setSearchFilter] = useState('');
+    const [regionFilter, setRegionFilter] = useState<string>('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     useEffect(() => {
@@ -42,31 +48,54 @@ export default function Countries() {
         fetchData();
     }, []);
 
-    const countryElements = countries.map((country) => (
+    const displayedCountries = countries.filter((country) => {
+        if (regionFilter && country.region !== regionFilter) {
+            return false;
+        }
+        if (searchFilter && !country.name.common.toLowerCase().includes(searchFilter.toLowerCase())) {
+            return false;
+        }
+        return true;
+    });
+
+    const countryElements = displayedCountries.map((country) => (
         <div key={country.cca2} className={styles.countryTile}>
-            <img
-                src={country.flags.png}
-                alt={`Flag of ${country.name.official}`}
-                className={styles.flag}
-                loading="lazy"
-            />
-            <div className={styles.countryInfo}>
-                <h2 className={styles.countryName}>{country.name.official}</h2>
-                <h3 className={styles.cardTitle}>
-                    {'Population: '}
-                    <span className={styles.cardDescription}>{country.population}</span>
-                </h3>
-                <h3 className={styles.cardTitle}>
-                    {'Region: '}
-                    <span className={styles.cardDescription}>{country.region}</span>
-                </h3>
-                <h3 className={styles.cardTitle}>
-                    {'Capital: '}
-                    <span className={styles.cardDescription}>{country.capital}</span>
-                </h3>
-            </div>
+            <Link
+                to={country.cca2}
+            >
+                <img
+                    src={country.flags.png}
+                    alt={`Flag of ${country.name.common}`}
+                    className={styles.flag}
+                    loading="lazy"
+                />
+                <div className={styles.countryInfo}>
+                    <h2 className={styles.countryName}>{country.name.common}</h2>
+                    <h3 className={styles.cardTitle}>
+                        {'Population: '}
+                        <span className={styles.cardDescription}>{country.population.toLocaleString()}</span>
+                    </h3>
+                    <h3 className={styles.cardTitle}>
+                        {'Region: '}
+                        <span className={styles.cardDescription}>{country.region}</span>
+                    </h3>
+                    <h3 className={styles.cardTitle}>
+                        {'Capital: '}
+                        <span className={styles.cardDescription}>{country.capital}</span>
+                    </h3>
+                </div>
+            </Link>
         </div>
     ));
+
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setSearchFilter(value);
+    };
+
+    const handleFilterChange = (region:string) => {
+        setRegionFilter(region);
+    };
 
     if (loading) {
         return <h1>Loading...</h1>;
@@ -82,8 +111,12 @@ export default function Countries() {
     }
 
     return (
-        <div className={styles.countryList}>
-            {countryElements}
+        <div className={styles.countryListContainer}>
+            <Search onChange={handleChange} />
+            <Dropdown onChange={handleFilterChange} />
+            <div className={styles.countryList}>
+                {countryElements}
+            </div>
         </div>
     );
 }

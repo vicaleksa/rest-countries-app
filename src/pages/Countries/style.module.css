@@ -1,3 +1,7 @@
+.countryListContainer {
+    padding: 1.5rem 1rem;
+}
+
 .countryList {
     display: flex;
     flex-direction: column;
@@ -9,6 +13,8 @@
 .countryTile {
     max-width: 16.5rem;
     box-shadow: 0 0 0.5rem 0.125rem rgb(0 0 0 / 2.94%);
+    background-color: var(--clr-elements);
+    border-radius: 0.375rem;
 }
 
 .flag {
@@ -16,6 +22,8 @@
     width: 16.5rem;
     height: 10rem;
     object-fit: cover;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
 }
 
 .countryInfo {

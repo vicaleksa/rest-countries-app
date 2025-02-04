@@ -1,3 +1,4 @@
+import React from 'react';
 import { IoMoonOutline, IoSunny } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 import styles from './style.module.css';

@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client';
-import { StrictMode } from 'react';
+import React, { StrictMode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
-import Layout from './components/Layout';
-import Home from './pages/Home';
 import { ThemeProvider } from './contexts/ThemeContext';
+import Layout from './components/Layout';
+import Countries from './pages/Countries';
+import CountryDetail from './pages/CountryDetail';
 import './index.css';
 import 'normalize.css';
 
@@ -13,7 +14,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
-                        <Route index element={<Home />} />
+                        <Route index element={<Countries />} />
+                        <Route path=":id" element={<CountryDetail />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
