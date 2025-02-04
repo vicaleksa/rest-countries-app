@@ -23,12 +23,20 @@ module.exports = {
         ],
         extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
                 exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['@babel/preset-react', '@babel/preset-env'],
+                    },
+                },
             },
             {
                 test: /\.svg$/i,
