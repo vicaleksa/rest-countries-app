@@ -1,0 +1,77 @@
+.countryDetailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.75rem;
+}
+
+.backButton {
+    align-self: flex-start;
+    margin-bottom: 4rem;
+    background-color: var(--clr-elements);
+    padding: 0.375rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    box-shadow: 0 0 0.5rem rgb(0 0 0 / 29.31%);
+    border-radius: 0.125rem;
+}
+
+.flag {
+    display: block;
+    width: 20rem;
+    height: 14.375rem;
+    object-fit: cover;
+    border-radius: 0.375rem;
+}
+
+.countryInfo {
+    margin-top: 2.75rem;
+}
+
+.countryInfo, .mainCountryInfo {
+    margin-bottom: 1.25rem;
+}
+
+.countryName {
+    font-size: 1.375rem;
+    font-weight: 800;
+    padding-bottom: 1rem;
+}
+
+.cardTitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+}
+
+.cardDescription {
+    font-weight: 300;
+    font-size: 0.875rem;
+}
+
+.borderInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.borderTitle {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.borderButtonsContainer {
+    display: flex;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+}
+
+.bordersButton {
+    background-color: var(--clr-elements);
+    padding: 0.375rem 1.875rem;
+    font-size: 0.75rem;
+    box-shadow: 0 0 0.25rem 0.125rem rgb(0 0 0 / 10.49%);
+    border-radius: 0.125rem;
+}
