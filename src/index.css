@@ -11,6 +11,7 @@ body {
     --clr-background: #fafafa;
     --clr-input: #858585;
     --clr-input-placeholder: #c4c4c4;
+    --clr-selected: #2B3844;
 }
 
 .dark {
@@ -19,6 +20,7 @@ body {
     --clr-background: #202C36;
     --clr-input: #fff;
     --clr-input-placeholder: #fff;
+    --clr-selected: #fff;
 }
 
 h1,

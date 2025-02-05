@@ -16,6 +16,11 @@
     box-shadow: 0 0.125rem 0.5rem rgb(0 0 0 / 5.32%);
 }
 
+.filterSelected {
+    background-color: var(--clr-selected);
+    color: var(--clr-elements);
+}
+
 .dropdownContent {
     display: none;
     position: absolute;

@@ -1,43 +1,63 @@
-import { IoChevronDown } from 'react-icons/io5';
+import { IoChevronDown, IoCloseCircle } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import styles from './style.module.css';
 
-const iconSize = { size: '0.75rem' };
+const iconSize = { size: '1rem' };
 
 type ButtonProps = {
     onChange: (region: string) => void;
+    regionFilter: string;
+    setRegionFilter: (region: string) => void;
+    isOpenDropdown: boolean;
+    openDropdown: () => void;
+    closeDropdown: () => void;
 }
 
-export default function Dropdown({ onChange }: ButtonProps) {
-    const [open, setOpen] = useState(false);
-
-    const openDropdown = () => {
-        setOpen(true);
-    };
-
-    const closeDropdown = () => {
-        setOpen(false);
-    };
-
+export default function Dropdown({
+    onChange,
+    regionFilter,
+    setRegionFilter,
+    isOpenDropdown,
+    openDropdown,
+    closeDropdown,
+}: ButtonProps) {
     return (
         <div className={styles.dropdown}>
-            <button
-                className={styles.dropdownButton}
-                type="button"
-                onClick={openDropdown}
-            >
-                <span>Filter by Region</span>
-                <IconContext.Provider value={iconSize}>
-                    <IoChevronDown />
-                </IconContext.Provider>
-            </button>
+            {!regionFilter
+                ? (
+                    <button
+                        className={styles.dropdownButton}
+                        type="button"
+                        onClick={openDropdown}
+                    >
+                        <span>Filter by Region</span>
+                        <IconContext.Provider value={iconSize}>
+                            <IoChevronDown />
+                        </IconContext.Provider>
+                    </button>
+                )
+                : (
+                    <button
+                        className={clsx(
+                            styles.dropdownButton,
+                            styles.filterSelected,
+                        )}
+                        type="button"
+                        onClick={() => { setRegionFilter(''); }}
+                    >
+                        <span>{regionFilter}</span>
+                        <IconContext.Provider value={iconSize}>
+                            <IoCloseCircle />
+                        </IconContext.Provider>
+                    </button>
+                )}
             {/* eslint-disable-next-line */}
-            {open && <div className={styles.backdrop} onClick={closeDropdown}/>}
+            {isOpenDropdown && <div className={styles.backdrop} onClick={closeDropdown}/>}
             <div className={clsx(
                 styles.dropdownContent,
-                { [styles.openDropdown]: open },
+                { [styles.openDropdown]: isOpenDropdown },
             )}
             >
                 <button

@@ -27,6 +27,13 @@ export default function Countries() {
     const [regionFilter, setRegionFilter] = useState<string>('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+    const openDropdown = () => {
+        setIsOpenDropdown(true);
+    };
+    const closeDropdown = () => {
+        setIsOpenDropdown(false);
+    };
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
@@ -95,6 +102,7 @@ export default function Countries() {
 
     const handleFilterChange = (region:string) => {
         setRegionFilter(region);
+        closeDropdown();
     };
 
     if (loading) {
@@ -113,7 +121,14 @@ export default function Countries() {
     return (
         <div className={styles.countryListContainer}>
             <Search onChange={handleChange} />
-            <Dropdown onChange={handleFilterChange} />
+            <Dropdown
+                onChange={handleFilterChange}
+                regionFilter={regionFilter}
+                setRegionFilter={setRegionFilter}
+                isOpenDropdown={isOpenDropdown}
+                openDropdown={openDropdown}
+                closeDropdown={closeDropdown}
+            />
             <div className={styles.countryList}>
                 {countryElements}
             </div>
