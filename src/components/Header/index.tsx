@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 import styles from './style.module.css';
 import ThemeSwitcher from '../ThemeSwitcher';
 
 export default function Header() {
     return (
         <header className={styles.header}>
-            <Link className={styles.logo} to="/">Where in the world?</Link>
+            <NavLink
+                to="/"
+                reloadDocument
+                className={styles.logo}
+            >
+                Where in the world?
+            </NavLink>
             <ThemeSwitcher />
         </header>
     );
