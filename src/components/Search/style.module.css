@@ -15,7 +15,7 @@
 
 .searchInput {
     font-size: 0.75rem;
-    color: var(--clr-input);
+    color: var(--clr-typography);
     border: none;
     outline: none;
     background: transparent;

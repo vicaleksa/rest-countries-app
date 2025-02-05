@@ -8,7 +8,6 @@ export default function Header() {
         <header className={styles.header}>
             <NavLink
                 to="/"
-                reloadDocument
                 className={styles.logo}
             >
                 Where in the world?
