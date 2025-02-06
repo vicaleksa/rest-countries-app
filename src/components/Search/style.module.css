@@ -1,3 +1,8 @@
+.searchContainer {
+    max-width: 30rem;
+    flex-grow: 1;
+}
+
 .search {
     display: flex;
     align-items: center;
@@ -25,4 +30,14 @@
 
 .searchInput::placeholder {
     color: var(--clr-input-placeholder);
+}
+
+@media (width >= 64rem) {
+    .search {
+        padding: 1.25rem 2rem;
+    }
+
+    .searchInput {
+        font-size: 0.875rem;
+    }
 }

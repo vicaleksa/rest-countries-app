@@ -4,14 +4,14 @@ import { IconContext } from 'react-icons';
 import styles from './style.module.css';
 import { useTheme } from '../../contexts/ThemeContext';
 
-const iconSize = { size: '1rem' };
+const iconStyle = { className: styles.icon };
 
 export default function ThemeSwitcher() {
     const { theme, toggleTheme } = useTheme();
 
     return (
         <button className={styles.themeButton} type="button" onClick={toggleTheme}>
-            <IconContext.Provider value={iconSize}>
+            <IconContext.Provider value={iconStyle}>
                 {theme === 'light' ? <IoMoonOutline /> : <IoSunny />}
             </IconContext.Provider>
             <span>

@@ -120,15 +120,17 @@ export default function Countries() {
 
     return (
         <div className={styles.countryListContainer}>
-            <Search onChange={handleChange} />
-            <Dropdown
-                onChange={handleFilterChange}
-                regionFilter={regionFilter}
-                setRegionFilter={setRegionFilter}
-                isOpenDropdown={isOpenDropdown}
-                openDropdown={openDropdown}
-                closeDropdown={closeDropdown}
-            />
+            <div className={styles.filters}>
+                <Search onChange={handleChange} />
+                <Dropdown
+                    onChange={handleFilterChange}
+                    regionFilter={regionFilter}
+                    setRegionFilter={setRegionFilter}
+                    isOpenDropdown={isOpenDropdown}
+                    openDropdown={openDropdown}
+                    closeDropdown={closeDropdown}
+                />
+            </div>
             <div className={styles.countryList}>
                 {countryElements}
             </div>

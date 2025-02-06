@@ -14,3 +14,13 @@
     font-weight: 800;
     text-decoration: none;
 }
+
+@media (width >= 64rem) {
+    .header {
+        padding: 1.5rem 5rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+}

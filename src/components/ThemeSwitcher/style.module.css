@@ -5,3 +5,17 @@
     align-items: center;
     gap: 0.5rem;
 }
+
+.icon {
+    font-size: 1rem;
+}
+
+@media (width >= 64rem) {
+    .themeButton {
+        font-size: 1rem;
+    }
+
+    .icon {
+        font-size: 1.25rem;
+    }
+}

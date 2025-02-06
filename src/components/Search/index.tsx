@@ -1,10 +1,11 @@
 import React from 'react';
 import { IoSearch } from 'react-icons/io5';
+import { IconContext } from 'react-icons';
 import styles from './style.module.css';
 
 export default function Search({ onChange }) {
     return (
-        <search>
+        <search className={styles.searchContainer}>
             <form>
                 <div className={styles.search}>
                     <IoSearch />
