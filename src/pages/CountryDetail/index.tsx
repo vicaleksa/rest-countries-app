@@ -127,21 +127,25 @@ export default function CountryDetail() {
             </Link>
             {country && (
                 <div className={styles.countryDetail}>
-                    <img
-                        src={country.flags.png}
-                        alt={`Flag of ${country.name.common}`}
-                        className={styles.flag}
-                    />
+                    <div className={styles.flagContainer}>
+                        <img
+                            src={country.flags.png}
+                            alt={`Flag of ${country.name.common}`}
+                            className={styles.flag}
+                        />
+                    </div>
                     <div className={styles.countryInfo}>
                         <h2 className={styles.countryName}>{country.name.common}</h2>
-                        <div className={styles.mainCountryInfo}>
+                        <div className={styles.countryInfoFirst}>
                             <h3 className={styles.cardTitle}>
                                 {'Native Names: '}
                                 <span className={styles.cardDescription}>{nativeNames}</span>
                             </h3>
                             <h3 className={styles.cardTitle}>
                                 {'Population: '}
-                                <span className={styles.cardDescription}>{country.population.toLocaleString()}</span>
+                                <span className={styles.cardDescription}>
+                                    {country.population.toLocaleString()}
+                                </span>
                             </h3>
                             <h3 className={styles.cardTitle}>
                                 {'Region: '}
@@ -158,7 +162,7 @@ export default function CountryDetail() {
                                 <span className={styles.cardDescription}>{country.capital}</span>
                             </h3>
                         </div>
-                        <div className={styles.extraCountryInfo}>
+                        <div className={styles.countryInfoSecond}>
                             <h3 className={styles.cardTitle}>
                                 {'Top Level Domain: '}
                                 <span className={styles.cardDescription}>{country.tld}</span>
@@ -172,15 +176,15 @@ export default function CountryDetail() {
                                 <span className={styles.cardDescription}>{languages}</span>
                             </h3>
                         </div>
-                    </div>
-                    <div className={styles.borderInfo}>
-                        <h4 className={styles.borderTitle}>Border Countries:</h4>
-                        {country.borders ? (
-                            <div className={styles.borderButtonsContainer}>
-                                {borderCountries}
-                            </div>
-                        )
-                            : <span className={styles.cardDescription}>No border countries.</span>}
+                        <div className={styles.borderInfo}>
+                            <h4 className={styles.borderTitle}>Border Countries:</h4>
+                            {country.borders ? (
+                                <div className={styles.borderButtonsContainer}>
+                                    {borderCountries}
+                                </div>
+                            )
+                                : <span className={styles.cardDescription}>No border countries.</span>}
+                        </div>
                     </div>
                 </div>
             )}
