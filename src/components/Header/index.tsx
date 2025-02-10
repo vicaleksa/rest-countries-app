@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router';
 import styles from './style.module.css';
 import ThemeSwitcher from '../ThemeSwitcher';

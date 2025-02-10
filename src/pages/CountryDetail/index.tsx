@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { IoArrowBack } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
@@ -22,23 +22,23 @@ interface Country {
     name: {
         common: string
         official: string
-        nativeName:
+        nativeName?:
         Record<string, NativeName>
     },
     population: number,
     region: string,
-    subregion: string,
-    tld: [
+    subregion?: string,
+    tld?: [
         string
     ]
-    capital: [
+    capital?: [
         string
     ],
-    currencies:
+    currencies?:
         Record<string, Currency>,
-    languages:
+    languages?:
         Record<string, string>,
-    borders: [
+    borders?: [
         string
     ]
 }
@@ -48,9 +48,12 @@ export default function CountryDetail() {
     const [country, setCountry] = useState<Country>();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { id } = useParams();
+    const { id } = useParams<{id: string}>();
     useEffect(() => {
         async function fetchData() {
+            if (!id) {
+                throw new Error('Id is not defined');
+            }
             setLoading(true);
             try {
                 const response = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
@@ -70,10 +73,6 @@ export default function CountryDetail() {
         fetchData();
     }, [id]);
 
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
-
     if (error) {
         return (
             <h1>
@@ -83,25 +82,56 @@ export default function CountryDetail() {
         );
     }
 
-    let currencies = '';
-    if (country) {
-        const currencyNames = (Object.values(country.currencies)).map((curr) => curr.name);
-        currencies = currencyNames.join(', ');
-    }
-
-    let languages = '';
-    if (country) {
-        languages = (Object.values(country.languages)).join(', ');
+    if (loading || !country) {
+        return <h1>Loading...</h1>;
     }
 
     let nativeNames = '';
-    if (country) {
+    if (country.name.nativeName) {
         const commonNames = (Object.values(country.name.nativeName)).map((name) => name.common);
         nativeNames = commonNames.join(', ');
+    } else {
+        nativeNames = '-';
+    }
+
+    let subregion = '';
+    if (country.subregion) {
+        subregion = country.subregion;
+    } else {
+        subregion = '-';
+    }
+
+    let capitals = '';
+    if (country.capital) {
+        capitals = country.capital.join(', ');
+    } else {
+        capitals = '-';
+    }
+
+    let domains = '';
+    if (country.tld) {
+        domains = country.tld.join(' ');
+    } else {
+        domains = '-';
+    }
+
+    let currencies = '';
+    if (country.currencies) {
+        const currencyNames = (Object.values(country.currencies)).map((curr) => curr.name);
+        currencies = currencyNames.join(', ');
+    } else {
+        currencies = '-';
+    }
+
+    let languages = '';
+    if (country.languages) {
+        languages = (Object.values(country.languages)).join(', ');
+    } else {
+        languages = '-';
     }
 
     let borderCountries: React.JSX.Element[] = [];
-    if (country?.borders) {
+    if (country.borders) {
         borderCountries = country.borders.map((borderCountry) => (
             <Link
                 to={`/${borderCountry}`}
@@ -125,69 +155,65 @@ export default function CountryDetail() {
                 </IconContext.Provider>
                 <span>Back</span>
             </Link>
-            {country && (
-                <div className={styles.countryDetail}>
-                    <div className={styles.flagContainer}>
-                        <img
-                            src={country.flags.png}
-                            alt={`Flag of ${country.name.common}`}
-                            className={styles.flag}
-                        />
+            <div className={styles.countryDetail}>
+                <div className={styles.flagContainer}>
+                    <img
+                        src={country.flags.png}
+                        alt={`Flag of ${country.name.common}`}
+                        className={styles.flag}
+                    />
+                </div>
+                <div className={styles.countryInfo}>
+                    <h2 className={styles.countryName}>{country.name.common}</h2>
+                    <div className={styles.countryInfoFirst}>
+                        <h3 className={styles.cardTitle}>
+                            {'Native Names: '}
+                            <span className={styles.cardDescription}>{nativeNames}</span>
+                        </h3>
+                        <h3 className={styles.cardTitle}>
+                            {'Population: '}
+                            <span className={styles.cardDescription}>
+                                {country.population.toLocaleString()}
+                            </span>
+                        </h3>
+                        <h3 className={styles.cardTitle}>
+                            {'Region: '}
+                            <span className={styles.cardDescription}>{country.region}</span>
+                        </h3>
+                        <h3 className={styles.cardTitle}>
+                            {'Sub Region: '}
+                            <span className={styles.cardDescription}>{subregion}</span>
+                        </h3>
+                        <h3 className={styles.cardTitle}>
+                            {'Capital: '}
+                            <span className={styles.cardDescription}>{capitals}</span>
+                        </h3>
                     </div>
-                    <div className={styles.countryInfo}>
-                        <h2 className={styles.countryName}>{country.name.common}</h2>
-                        <div className={styles.countryInfoFirst}>
-                            <h3 className={styles.cardTitle}>
-                                {'Native Names: '}
-                                <span className={styles.cardDescription}>{nativeNames}</span>
-                            </h3>
-                            <h3 className={styles.cardTitle}>
-                                {'Population: '}
-                                <span className={styles.cardDescription}>
-                                    {country.population.toLocaleString()}
-                                </span>
-                            </h3>
-                            <h3 className={styles.cardTitle}>
-                                {'Region: '}
-                                <span className={styles.cardDescription}>{country.region}</span>
-                            </h3>
-                            {country.subregion && (
-                                <h3 className={styles.cardTitle}>
-                                    {'Sub Region: '}
-                                    <span className={styles.cardDescription}>{country.subregion}</span>
-                                </h3>
-                            )}
-                            <h3 className={styles.cardTitle}>
-                                {'Capital: '}
-                                <span className={styles.cardDescription}>{country.capital}</span>
-                            </h3>
-                        </div>
-                        <div className={styles.countryInfoSecond}>
-                            <h3 className={styles.cardTitle}>
-                                {'Top Level Domain: '}
-                                <span className={styles.cardDescription}>{country.tld}</span>
-                            </h3>
-                            <h3 className={styles.cardTitle}>
-                                {'Currencies: '}
-                                <span className={styles.cardDescription}>{currencies}</span>
-                            </h3>
-                            <h3 className={styles.cardTitle}>
-                                {'Languages: '}
-                                <span className={styles.cardDescription}>{languages}</span>
-                            </h3>
-                        </div>
-                        <div className={styles.borderInfo}>
-                            <h4 className={styles.borderTitle}>Border Countries:</h4>
-                            {country.borders ? (
-                                <div className={styles.borderButtonsContainer}>
-                                    {borderCountries}
-                                </div>
-                            )
-                                : <span className={styles.cardDescription}>No border countries.</span>}
-                        </div>
+                    <div className={styles.countryInfoSecond}>
+                        <h3 className={styles.cardTitle}>
+                            {'Top Level Domain: '}
+                            <span className={styles.cardDescription}>{domains}</span>
+                        </h3>
+                        <h3 className={styles.cardTitle}>
+                            {'Currencies: '}
+                            <span className={styles.cardDescription}>{currencies}</span>
+                        </h3>
+                        <h3 className={styles.cardTitle}>
+                            {'Languages: '}
+                            <span className={styles.cardDescription}>{languages}</span>
+                        </h3>
+                    </div>
+                    <div className={styles.borderInfo}>
+                        <h4 className={styles.borderTitle}>Border Countries:</h4>
+                        {country.borders ? (
+                            <div className={styles.borderButtonsContainer}>
+                                {borderCountries}
+                            </div>
+                        )
+                            : <span className={styles.cardDescription}>No border countries.</span>}
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 }

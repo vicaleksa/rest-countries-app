@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import styles from './style.module.css';
 import Dropdown from '../../components/Dropdown';
@@ -15,7 +15,7 @@ interface Country {
     },
     population: number,
     region: string,
-    capital: [
+    capital?: [
         string
     ]
 }
@@ -88,14 +88,16 @@ export default function Countries() {
                     </h3>
                     <h3 className={styles.cardTitle}>
                         {'Capital: '}
-                        <span className={styles.cardDescription}>{country.capital}</span>
+                        <span className={styles.cardDescription}>
+                            {country.capital ? country.capital.join(', ') : '-'}
+                        </span>
                     </h3>
                 </div>
             </Link>
         </div>
     ));
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setSearchFilter(value);
     };

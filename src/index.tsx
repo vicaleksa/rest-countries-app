@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import React, { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/Layout';

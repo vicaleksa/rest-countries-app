@@ -1,6 +1,5 @@
 import { IoChevronDown, IoCloseCircle } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
-import React from 'react';
 import clsx from 'clsx';
 import styles from './style.module.css';
 
