@@ -6,7 +6,8 @@
     "start": "webpack serve",
     "build": "webpack",
     "lint": "eslint ./src --ext .ts,.tsx",
-    "lint:style": "stylelint \"./src/**/*.css\""
+    "lint:style": "stylelint \"./src/**/*.css\"",
+    "ts": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

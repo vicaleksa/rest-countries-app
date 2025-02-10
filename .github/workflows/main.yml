@@ -23,3 +23,6 @@ jobs:
 
       - name: Run StyleLint
         run: npm run lint:style
+
+      - name: Run TypeScript
+        run: npm run ts

@@ -7,6 +7,8 @@
         "lib": ["es2023", "dom"],
         "jsx": "react-jsx",
         "moduleResolution": "node",
-        "esModuleInterop": true
-    }
+        "esModuleInterop": true,
+        "skipLibCheck": true
+    },
+    "exclude": ["node_modules"]
 }
