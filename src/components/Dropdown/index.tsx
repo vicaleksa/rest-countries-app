@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import styles from './style.module.css';
 
 const iconSize = { size: '1rem' };
+const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
 type ButtonProps = {
     onChange: (region: string) => void;
@@ -44,11 +45,11 @@ export default function Dropdown({
                             styles.filterSelected,
                         )}
                         type="button"
-                        onClick={() => { setRegionFilter(''); }}
+                        onClick={openDropdown}
                     >
                         <span>{regionFilter}</span>
                         <IconContext.Provider value={iconSize}>
-                            <IoCloseCircle />
+                            <IoCloseCircle onClick={() => { setRegionFilter(''); }} />
                         </IconContext.Provider>
                     </button>
                 )}
@@ -59,41 +60,15 @@ export default function Dropdown({
                 { [styles.openDropdown]: isOpenDropdown },
             )}
             >
-                <button
-                    type="button"
-                    className={styles.filterButton}
-                    onClick={() => { onChange('Africa'); }}
-                >
-                    Africa
-                </button>
-                <button
-                    type="button"
-                    className={styles.filterButton}
-                    onClick={() => { onChange('Americas'); }}
-                >
-                    America
-                </button>
-                <button
-                    type="button"
-                    className={styles.filterButton}
-                    onClick={() => { onChange('Asia'); }}
-                >
-                    Asia
-                </button>
-                <button
-                    type="button"
-                    className={styles.filterButton}
-                    onClick={() => { onChange('Europe'); }}
-                >
-                    Europe
-                </button>
-                <button
-                    type="button"
-                    className={styles.filterButton}
-                    onClick={() => { onChange('Oceania'); }}
-                >
-                    Oceania
-                </button>
+                {regions.map((region) => (
+                    <button
+                        type="button"
+                        className={styles.filterButton}
+                        onClick={() => { onChange(region); }}
+                    >
+                        {region}
+                    </button>
+                ))}
             </div>
         </div>
     );
