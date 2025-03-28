@@ -1,0 +1,49 @@
+.countryList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 16.5rem);
+    justify-content: center;
+    gap: min(2.5rem, 4.625rem);
+    margin-top: 2rem;
+}
+
+.countryTile {
+    box-shadow: 0 0 0.5rem 0.125rem rgb(0 0 0 / 2.94%);
+    background-color: var(--clr-elements);
+    border-radius: 0.375rem;
+}
+
+.flag {
+    display: block;
+    width: 16.5rem;
+    height: 10rem;
+    object-fit: cover;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+}
+
+.countryInfo {
+    margin: 1.5rem;
+    padding-bottom: 0.875rem;
+}
+
+.countryName {
+    font-size: 1.125rem;
+    font-weight: 800;
+    padding-bottom: 1rem;
+}
+
+.cardTitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+}
+
+.cardDescription {
+    font-weight: 300;
+}
+
+@media (width >= 64rem) {
+    .countryList {
+        margin-top: 3rem;
+    }
+}
