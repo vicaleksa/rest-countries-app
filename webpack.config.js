@@ -1,11 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-module.exports = {
+const isProd = process.env.MODE === 'production';
+
+const config = {
     entry: './src/index.tsx',
-    mode: 'development',
-    devtool: 'source-map',
+    mode: isProd ? 'production' : 'development',
+    devtool: isProd ? false : 'source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -69,3 +72,14 @@ module.exports = {
         ],
     },
 };
+
+if (isProd) {
+    config.optimization = {
+        minimizer: [
+            '...',
+            new CssMinimizerPlugin(),
+        ],
+    };
+}
+
+module.exports = config;

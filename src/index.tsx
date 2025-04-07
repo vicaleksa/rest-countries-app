@@ -1,3 +1,4 @@
+import 'normalize.css';
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
@@ -6,7 +7,6 @@ import Layout from './components/Layout';
 import Countries from './pages/Countries';
 import CountryDetail from './pages/CountryDetail';
 import './index.css';
-import 'normalize.css';
 
 function App() {
     return (
